@@ -1,6 +1,16 @@
+import { useState } from "React";
+
 function ProductForm() {
+  const [name, setName] = useState("");
+  const [url, setUrl] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+  const handleSubmit = (event) => {
+    event.preventDefault
+  }
+  
   return (
-    <form className="post-form">
+    <form className="post-form" onSubmit={handleSubmit} >
       <h1>Create Product Form</h1>
       <div className="input-container">
         <label>
@@ -10,7 +20,7 @@ function ProductForm() {
             name="name"
             type="text"
             placeholder="Enter name here"
-            onChange={() => {}}
+            onChange={(event) => setName(event.target.value)}
           />
         </label>
       </div>
@@ -22,7 +32,7 @@ function ProductForm() {
             name="image"
             type="text"
             placeholder="Enter image url here"
-            onChange={() => {}}
+            onChange={(event) => setUrl(event.target.value)}
           />
         </label>
       </div>
@@ -34,7 +44,7 @@ function ProductForm() {
             name="price"
             type="number"
             placeholder="Enter price here"
-            onChange={() => {}}
+            onChange={() => setPrice(event.target.value)}
           />
         </label>
       </div>
@@ -46,14 +56,21 @@ function ProductForm() {
             name="description"
             type="text"
             placeholder="Enter description here"
-            onChange={() => {}}
+            onChange={(event) => setDescription(event.target.value)}
             rows={4}
             cols={30}
           />
         </label>
       </div>
       <div className="form-actions">
-        <button type="submit">Create</button>
+        <button
+          type="submit"
+          onClick={() => {
+            alert(JSON.stringify({ name, url, price, description }));
+          }}
+        >
+          Create
+        </button>
       </div>
     </form>
   );
